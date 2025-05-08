@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-west-2"  # Replace with your desired region
+}
+
 resource "aws_instance" "prgade_instance" {
   ami           = var.ami_id
   instance_type = var.instance_type
