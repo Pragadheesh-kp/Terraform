@@ -1,0 +1,42 @@
+name: Deploy Terraform
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    name: Apply Terraform Configuration
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0  # Adjust to match your Terraform version
+
+      # Step 3: Initialize Terraform
+      - name: Terraform Init
+        run: terraform init
+
+      # Step 4: Validate Terraform configuration
+      - name: Terraform Validate
+        run: terraform validate
+
+      # Step 5: Plan Terraform changes
+      - name: Terraform Plan
+        run: terraform plan
+
+      # Step 6: Apply Terraform changes (if you are confident in automating this)
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
