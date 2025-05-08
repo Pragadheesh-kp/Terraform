@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"  # Replace with your desired region
+  region = "ap-south-1"  # Replace with your desired region
 }
 
 resource "aws_instance" "prgade_instance" {
