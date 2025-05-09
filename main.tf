@@ -10,7 +10,7 @@ resource "aws_instance" "prgade_instance" {
   vpc_security_group_ids = [data.aws_security_group.existing_sg.id]
 
   tags = {
-    Name = "prgade-instance1"
+    Name = "task4"
   }
 
   # User data to install Docker, create directory, and clone repositories
